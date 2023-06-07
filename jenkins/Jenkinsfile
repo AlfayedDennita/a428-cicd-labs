@@ -12,8 +12,13 @@ node {
         stage('Deploy') {
             sh './jenkins/scripts/deliver.sh'
 
+            sh 'git remote add origin https://github.com/AlfayedDennita/a428-cicd-labs.git'
+            sh 'ls'
+            sh 'git add .'
+            sh 'git commit -m "Push from Jenkins pipeline"'
+
             withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
-                sh './jenkins/scripts/push.sh'
+                sh 'git push -u origin react-app'
             }
 
             sleep time: 1, unit: 'MINUTES'

@@ -19,10 +19,10 @@ node {
         withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
             sh 'git config --global user.name "Jenkins Pipeline"'
             sh 'git config --global user.email "jenkins@localhost"'
-            sh 'git remote set-url origin https://github.com/AlfayedDennita/dicoding-cicd-react.git'
             sh 'git add .'
             sh 'git commit -m "Deploy from Jenkins pipeline"'
-            sh 'git push -u origin main'
+            sh 'git branch -M main'
+            sh 'git push -u https://github.com/AlfayedDennita/dicoding-cicd-react.git main'
         }
     }
 }

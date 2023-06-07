@@ -23,6 +23,5 @@ node {
             sh 'git commit -m "Deploy from Jenkins pipeline"'
             sh 'git push -f https://github.com/AlfayedDennita/dicoding-cicd-react.git HEAD:main'
         }
-
     }
 }

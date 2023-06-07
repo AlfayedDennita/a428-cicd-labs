@@ -23,7 +23,7 @@ node {
             sh 'git config --global user.email "jenkins@localhost"'
             sh 'git add .'
             sh 'git commit -m "Deploy from Jenkins pipeline"'
-            sh 'git pull --rebase https://github.com/AlfayedDennita/dicoding-cicd-react-deploy.git HEAD:main'
+            sh 'git pull --rebase https://github.com/AlfayedDennita/dicoding-cicd-react-deploy.git main'
             sh 'git push https://github.com/AlfayedDennita/dicoding-cicd-react-deploy.git HEAD:main'
         }
     }

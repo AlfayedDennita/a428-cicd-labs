@@ -12,18 +12,16 @@ node {
         stage('Deploy') {
             sh './jenkins/scripts/deliver.sh'
             // sleep time: 1, unit: 'MINUTES'
+            sh './jenkins/scripts/kill.sh'
         }
     }
-    stage('Push') {
-        sh 'git config --global user.name "Jenkins Pipeline"'
-        sh 'git config --global user.email "jenkins@localhost"'
-        sh 'git add .'
-        sh 'git commit -m "Push from Jenkins pipeline"'
-
+    stage('Deploy Vercel') {
         withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
-            sh 'git push -u origin react-app'
-        }
-
-        sh './jenkins/scripts/kill.sh'
+            sh 'git config --global user.name "Jenkins Pipeline"'
+            sh 'git config --global user.email "jenkins@localhost"'
+            sh 'git add .'
+            sh 'git commit -m "Deploy from Jenkins pipeline"'
+            sh 'git push -u https://github.com/AlfayedDennita/dicoding-cicd-react.git main'
+        }   
     }
 }

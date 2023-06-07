@@ -12,7 +12,6 @@ node {
         stage('Deploy') {
             sh './jenkins/scripts/deliver.sh'
             // sleep time: 1, unit: 'MINUTES'
-            sh './jenkins/scripts/kill.sh'
         }
     }
     stage('Deploy Vercel') {
@@ -22,6 +21,8 @@ node {
             sh 'git add .'
             sh 'git commit -m "Deploy from Jenkins pipeline"'
             sh 'git push -u https://github.com/AlfayedDennita/dicoding-cicd-react.git main'
-        }   
+        }
+
+        sh './jenkins/scripts/kill.sh'
     }
 }

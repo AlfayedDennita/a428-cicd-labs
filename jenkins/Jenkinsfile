@@ -24,7 +24,7 @@ node {
             sh 'git add .'
             sh 'git commit -m "Deploy from Jenkins pipeline"'
             sh 'git remote set-url origin https://github.com/AlfayedDennita/dicoding-cicd-react-deploy.git'
-            sh 'git push origin HEAD:master'
+            sh 'git push origin HEAD:main'
         }
     }
 }

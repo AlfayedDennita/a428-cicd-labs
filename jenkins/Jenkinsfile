@@ -1,4 +1,6 @@
 node {
+    checkout scm
+
     docker.image('node:16-buster-slim').inside('-p 4000:4000') {
         stage('Build') {
             sh 'npm install'
@@ -16,13 +18,12 @@ node {
         }
     }
     stage('Deploy Vercel') {
-        sh 'ls'
-        sh 'git config --global user.name "Jenkins Pipeline"'
-        sh 'git config --global user.email "jenkins@localhost"'
-        sh 'git add .'
-        sh 'git commit -m "Deploy from Jenkins pipeline"'
         withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
-            sh 'git push -f https://github.com/AlfayedDennita/dicoding-cicd-react.git HEAD:main'
+            sh 'git config --global user.name "Jenkins Pipeline"'
+            sh 'git config --global user.email "jenkins@localhost"'
+            sh 'git add .'
+            sh 'git commit -m "Deploy from Jenkins pipeline"'
+            sh 'git push https://github.com/AlfayedDennita/dicoding-cicd-react.git HEAD:main'
         }
     }
 }

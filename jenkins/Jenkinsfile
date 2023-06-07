@@ -14,7 +14,7 @@ node {
 
             withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
                 sh 'git remote add origin https://github.com/AlfayedDennita/a428-cicd-labs.git'
-                sh 'git add .'
+                sh 'git add ./'
                 sh 'git commit -m "Push from Jenkins pipeline"'
                 sh 'git push -u origin react-app'
             }

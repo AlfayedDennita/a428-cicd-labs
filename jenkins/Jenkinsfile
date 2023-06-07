@@ -16,11 +16,12 @@ node {
         }
     }
     stage('Deploy Vercel') {
+        sh 'ls'
+        sh 'git config --global user.name "Jenkins Pipeline"'
+        sh 'git config --global user.email "jenkins@localhost"'
+        sh 'git add .'
+        sh 'git commit -m "Deploy from Jenkins pipeline"'
         withCredentials([gitUsernamePassword(credentialsId: 'alfayeddennita-github-token', gitToolName: 'Default')]) {
-            sh 'git config --global user.name "Jenkins Pipeline"'
-            sh 'git config --global user.email "jenkins@localhost"'
-            sh 'git add .'
-            sh 'git commit -m "Deploy from Jenkins pipeline"'
             sh 'git push -f https://github.com/AlfayedDennita/dicoding-cicd-react.git HEAD:main'
         }
     }
